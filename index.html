@@ -1,0 +1,105 @@
+<html lang="en">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+		<title>Bright Light</title>
+	</head>
+	<body onload="setupForm()">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+			<a class="navbar-brand" href="#">Beat Saber Mapping Tools</a>
+		</nav>
+		<main role="main" class="container-sm">
+			<h1>Light Brightener</h1>
+			<form onsubmit="songSubmit()" action="javascript:void(0);">
+				<div class="form-group">
+					<label for="modeSelect">Mode</label>
+					<select id="modeSelect" class="form-control" onchange="toggleSettings()">
+						<option value="simple" selected>Simple</option>
+						<option value="channel">Per Channel</option>
+						<option value="color">Per Color</option>
+					</select>
+				</div>
+
+				<fieldset class="form-group" id="globalSettings">
+					<div class="form-group">
+						<label for="brightnessMulti">Brightness multiplier</label>
+						<input type="range" class="form-control-range" id="brightnessMulti" value="1" min="1" max="5" step=".1" oninput="updateSliderHelp(this)">
+						<small id="brightnessMultiHelper" class="form-text">1x</small>
+					</div>
+				</fieldset>
+
+				<fieldset class="form-group" id="perChannelSettings">
+					<div class="form-group">
+						<label for="redMulti">Red multiplier</label>
+						<input type="range" class="form-control-range" id="redMulti" value="1" min="1" max="5" step=".1" oninput="updateSliderHelp(this)">
+						<small id="redMultiHelper" class="form-text">1x</small>
+					</div>
+					<div class="form-group">
+						<label for="greenMulti">Green multiplier</label>
+						<input type="range" class="form-control-range" id="greenMulti" value="1" min="1" max="5" step=".1" oninput="updateSliderHelp(this)">
+						<small id="greenMultiHelper" class="form-text">1x</small>
+					</div>
+					<div class="form-group">
+						<label for="blueMulti">Blue multiplier</label>
+						<input type="range" class="form-control-range" id="blueMulti" value="1" min="1" max="5" step=".1" oninput="updateSliderHelp(this)">
+						<small id="blueMultiHelper" class="form-text">1x</small>
+					</div>
+				</fieldset>
+
+				<fieldset class="form-group" id="perColorSettings">
+				<!-- FUCK THIS ITS TOO DAMN COMPLICATED FOR A DUMB TOOL
+
+					<div class="form-row">
+						<div class="col-md-3"><h3>Color</h3></div>
+						<div class="col-md"><h3>Multiplier</h3></div>
+					</div>
+					
+					<div class="colorList">
+						<div class="form-row" id="colorEntry1">
+							<div class="form-group col-md-3">
+								<div class="input-group mb-3">
+									<div class="input-group-prepend">
+										<span class="input-group-text" id="colorPreview1">#</span>
+									</div>
+									<input type="text" class="form-control" id="colorHex1" value="FFFFFF" onchange="updateColor(this)">
+									<div class="input-group-append">
+										<span class="input-group-text">HEX</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-group col-md">
+								<input type="range" class="form-control-range" id="colorMultiplier1" value="1" min="1" max="5" step=".1" oninput="updateSliderHelp(this)">
+								<small id="colorMultiplier1Helper" class="form-text">1x</small>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-row">
+						<div class="btn-group" role="group">
+							<button type="button" class="btn btn-success" onclick="addColorRow()">+</button>
+							<button type="button" class="btn btn-danger" onclick="removeColorRow()">-</button>
+						</div>
+					</div>
+				-->
+
+				<div class="form-group">
+					<label for="colorData">Color Data (Advanced)</label>
+					<small class="form-text text-muted">The format is hex code color followed by a brightness multiplier value (comma-separated). Each color and multiplier should be on their own line. Be sure to not include any whitespace in your input. Hex identifer (#) is optional.</small>
+					<textarea class="form-control" id="colorData" cols=12 rows=15 placeholder="#00FFFF,3.0&#10;#FF00FF,2.5&#10;#00FF00,1.0"></textarea>
+				</div>
+				</fieldset>
+
+				<div class="form-group">
+					<label for="songFile">Song (*.dat or *.json)</label>
+					<input type="file" class="form-control-file" id="songFile">
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</main>
+	</body>
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+	<script src="main.js"></script>
+</html>
